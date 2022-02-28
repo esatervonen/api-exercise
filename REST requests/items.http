@@ -1,0 +1,39 @@
+### Create item
+
+POST http://localhost:3001/items
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..Gt8bjore3YOirPOlqRyDpnvjjIn2s8ZbzazLtc75pT8
+
+{
+        "title": "Likaiset kalsarit 2",
+        "description": "Hyvin marinoidut, myydään hyvään kotiin.",
+        "category": "Luksus",
+        "location": "Kemi",
+        "images": [
+            "http://dummyimage.com/108x100.png/ff4444/ffffff",
+            "http://dummyimage.com/242x100.png/5fa2dd/ffffff",
+            "http://dummyimage.com/246x100.png/ff4444/ffffff"
+        ],
+        "price": "€5,99",
+        "postingDate": "1603763534",
+        "deliveryType": "Pickup",
+        "userId": 1
+    }
+
+### Get all items
+
+GET http://localhost:3001/items
+
+### Search items
+
+GET http://localhost:3001/search?location=Kemi&postingDate=1603
+#GET http://localhost:3001/search?location=Oulu&location=Helsinki
+
+### Get item by id
+
+GET http://localhost:3001/items/6204f14273dc9771f4e1d590
+
+### Delete item by id
+
+DELETE http://localhost:3001/items/620612ee32c7e55f69427d44
+
