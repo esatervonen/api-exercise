@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
           Error: "Creating user failed."
         })
     }
-  } else sendStatus(400)
+  } else res.sendStatus(400)
 }
 
 const userLogin = (req, res) => {
