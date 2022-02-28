@@ -149,7 +149,7 @@ const updateItemById = (req, res) => {
             res.status(404).json({
                 Error: 'Item not found'
             })
-        } else {
+        } else if (foundItem.seller == req.user.id) {
 
             uploader(req, res, function (err) {
                 if (err instanceof multer.MulterError) {
@@ -188,7 +188,7 @@ const updateItemById = (req, res) => {
                     })
                 }
             })
-        }
+        } else res.sendStatus(403)
     })
 }
 
