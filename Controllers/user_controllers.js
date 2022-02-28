@@ -3,27 +3,29 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const createUser = async (req, res) => {
-  let createdUser
-  const salt = bcrypt.genSaltSync(6)
-  const hashedPassword = bcrypt.hashSync(req.body.password, salt)
-  createdUser = new User({
-    username: req.body.username,
-    password: hashedPassword,
-    email: req.body.email,
-    items: []
-  })
-  try {
-    await createdUser.save()
-    res
-      .status(201)
-      .json(createdUser)
-  } catch (err) {
-    res
-      .status(500)
-      .json({
-        Error: "Creating user failed."
-      })
-  }
+  if (req.body.email) {
+    let createdUser
+    const salt = bcrypt.genSaltSync(6)
+    const hashedPassword = bcrypt.hashSync(req.body.password, salt)
+    createdUser = new User({
+      username: req.body.username,
+      password: hashedPassword,
+      email: req.body.email,
+      items: []
+    })
+    try {
+      await createdUser.save()
+      res
+        .status(201)
+        .json(createdUser)
+    } catch (err) {
+      res
+        .status(500)
+        .json({
+          Error: "Creating user failed."
+        })
+    }
+  } else sendStatus(400)
 }
 
 const userLogin = (req, res) => {
