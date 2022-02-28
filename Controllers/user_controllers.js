@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const createUser = async (req, res) => {
-  if (req.body.email) {
+  if (req.body.email && req.body.username && req.body.password) {
     let createdUser
     const salt = bcrypt.genSaltSync(6)
     const hashedPassword = bcrypt.hashSync(req.body.password, salt)
